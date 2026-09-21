@@ -3,10 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:story_teller/appExtension.dart';
 import 'package:story_teller/configue/constant/colors.dart';
+import 'package:story_teller/features/home/presentation/data/model/authProvider.dart'
+    as app_auth;
 import 'package:story_teller/features/home/presentation/data/model/profileProviderModel.dart';
 import 'package:story_teller/features/home/presentation/screens/user_screen/language.dart';
 import 'package:story_teller/features/home/presentation/screens/user_screen/privacy.dart';
 import 'package:story_teller/features/home/presentation/screens/user_screen/update.dart';
+import 'package:story_teller/core/presentation/screen/onboarding/on_boarding.dart';
 import 'package:story_teller/widget/custom_elevate_button2.dart';
 
 class Profile extends StatefulWidget {
@@ -255,8 +258,58 @@ class ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.only(top: 22),
                             child: ElevatedButton2(
-                              onTap: () {
-                                
+                              onTap: () async {
+                                // Show confirmation dialog
+                                final confirm = await showDialog<bool>(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    title: Text(
+                                      context.t('Logout'),
+                                      style: TextStyle(
+                                          fontFamily: 'Carlito Bold',
+                                          fontSize: 20),
+                                    ),
+                                    content: Text(
+                                      'Are you sure you want to logout?',
+                                      style: TextStyle(
+                                          fontFamily: 'Carlito Regular',
+                                          fontSize: 16),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(ctx, false),
+                                        child: Text('Cancel',
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontFamily: 'Carlito Regular')),
+                                      ),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(ctx, true),
+                                        child: Text('Logout',
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontFamily: 'Carlito Bold')),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
+                                if (confirm == true && context.mounted) {
+                                  await context
+                                      .read<app_auth.AuthProvider>()
+                                      .signOut();
+                                  if (context.mounted) {
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const OnBoarding()),
+                                      (route) => false,
+                                    );
+                                  }
+                                }
                               },
                               text: context.t('LOGOUT'),
                               color: AppColors.mainBlue,

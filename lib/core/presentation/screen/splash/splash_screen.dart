@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:story_teller/configue/constant/colors.dart';
 import 'package:story_teller/core/presentation/screen/onboarding/on_boarding.dart';
+import 'package:story_teller/features/home/presentation/screens/home_screen/homeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,12 +17,25 @@ class SplashScreen extends StatefulWidget {
 class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => OnBoarding()));
-    });
-    // TODO: implement initState
     super.initState();
+    Timer(const Duration(seconds: 3), () {
+      _navigate();
+    });
+  }
+
+  void _navigate() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (!mounted) return;
+
+    if (user != null) {
+      // Already logged in — go directly to home
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    } else {
+      // Not logged in — show onboarding first, then login
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const OnBoarding()));
+    }
   }
 
   @override
@@ -32,7 +47,8 @@ class SplashScreenState extends State<SplashScreen> {
         children: [
           SvgPicture.asset(
             'assets/images/svgs/splash.svg',
-            fit: BoxFit.fill,width:size.width,
+            fit: BoxFit.fill,
+            width: size.width,
           ),
           SizedBox(height: size.height * 0.02),
           Text(

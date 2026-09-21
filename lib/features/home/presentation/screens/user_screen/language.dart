@@ -92,10 +92,11 @@ class LanguageState extends State<Language> {
                       height: size.height * 0.02,
                     ),
                     ElevatedButton2(
-                      onTap: ()  {
+                      onTap: () {
                         if (languageProvider.tempSelectedIndex != null) {
-                           languageProvider.saveLang(
-                            languageProvider.names[languageProvider.tempSelectedIndex!],
+                          languageProvider.saveLang(
+                            languageProvider
+                                .names[languageProvider.tempSelectedIndex!],
                             languageProvider.tempSelectedIndex!,
                             context,
                           );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:story_teller/configue/constant/colors.dart';
 import 'package:story_teller/core/constant/app_constant.dart';
-import 'package:story_teller/core/presentation/screen/select/screen1.dart';
+import 'package:story_teller/core/presentation/screen/login/login_screen.dart';
 import 'package:story_teller/features/home/presentation/data/model/onBoardingProvider.dart';
 import 'package:story_teller/widget/custom_elevate_button2.dart';
 
@@ -121,7 +121,7 @@ class _OnboardingState extends State<OnBoarding> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SelectScreen1(),
+                                  builder: (context) => const LoginScreen(),
                                 ));
                           },
                           text: 'NEXT',
@@ -143,11 +143,11 @@ class _OnboardingState extends State<OnBoarding> {
                                 height: size.height * 0.04,
                                 width: size.width * 0.20,
                                 child: ElevatedButton(
-                                    onPressed: () {
+                                     onPressed: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => SelectScreen1(),
+                                          builder: (context) => const LoginScreen(),
                                         ),
                                       );
                                     },

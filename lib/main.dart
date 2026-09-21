@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -10,6 +11,7 @@ import 'package:story_teller/core/service/notification_service.dart';
 import 'package:story_teller/features/home/presentation/data/model/homeProvider.dart';
 import 'package:story_teller/features/home/presentation/data/model/onBoardingProvider.dart';
 import 'package:story_teller/features/home/presentation/data/model/profileProviderModel.dart';
+import 'package:story_teller/features/home/presentation/data/model/authProvider.dart' as app_auth;
 import 'package:story_teller/features/home/presentation/data/model/searchProvider.dart';
 import 'package:story_teller/features/home/presentation/data/model/selectScreenProvider.dart';
 import 'package:story_teller/features/home/presentation/data/model/storyProfileProvider.dart';
@@ -32,30 +34,40 @@ void main() async {
   await Hive.openBox('storiesBox');
   await Hive.openBox('searchBox');
 
+  final app = MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => app_auth.AuthProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => SelectProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => OnBoardingProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ProfileProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => SearchProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => StoryProfileProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => HomeProvider(),
+      ),
+    ],
+    child: const MyApp(),
+  );
+
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => SelectProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => OnBoardingProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => ProfileProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SearchProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => StoryProfileProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => HomeProvider(),
-        ),
-      ],
-      child: const MyApp(),
-    ),
+    kDebugMode
+        ? DevicePreview(
+            enabled: false, // Set to true only when you want to preview devices
+            builder: (context) => app,
+          )
+        : app,
   );
 }
 
@@ -67,8 +79,7 @@ class MyApp extends StatelessWidget {
     final locale = context.watch<ProfileProvider>().currentLocale;
 
     return MaterialApp(
-      locale: DevicePreview.locale(context) ?? locale,
-      builder: DevicePreview.appBuilder,
+      locale: locale,
       supportedLocales: LocalizationService.supportedLocales,
       localizationsDelegates: LocalizationService.localizationsDelegates,
       localeResolutionCallback: LocalizationService.localeResolutionCallback,

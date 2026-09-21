@@ -8,12 +8,15 @@ import 'package:story_teller/widget/story_image.dart';
 class HomeProvider with ChangeNotifier {
   List<Map<String, dynamic>> categories = [];
   List<Map<String, dynamic>> stories = [];
-  bool isLoading = false;
+  bool isLoading = true;
 
   Future<void> fetchCategoriesAndStoreInHive(BuildContext context) async {
     try {
-      isLoading = true;
-      notifyListeners();
+      // Only show loading/shimmer if we have no cached data yet
+      if (categories.isEmpty) {
+        isLoading = true;
+        notifyListeners();
+      }
 
       var myBox = await Hive.openBox('categoriesBox');
       var langCode = Provider.of<ProfileProvider>(context, listen: false)
@@ -55,6 +58,9 @@ class HomeProvider with ChangeNotifier {
     try {
       var myBox = await Hive.openBox('categoriesBox');
       categories = myBox.values.map((e) => Map<String, dynamic>.from(e)).toList();
+      if (categories.isNotEmpty) {
+        isLoading = false;
+      }
       notifyListeners();
     } catch (e) {
       debugPrint('Error reading categories from Hive: $e');

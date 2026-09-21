@@ -72,16 +72,48 @@ class _UpdateState extends State<Update> {
                     scrollDirection: Axis.horizontal,
                     itemCount: profileProvider.image.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
+                      return GestureDetector(
                         onTap: () {
                           profileProvider
                               .changeImage(profileProvider.image[index]);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 22),
-                          child: Image.asset(
-                            profileProvider.image[index],
-                            width: size.width * 0.26,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: profileProvider.imageURL ==
+                                        profileProvider.image[index]
+                                    ? AppColors.mainBlue
+                                    : Colors.transparent,
+                                width: 3,
+                              ),
+                              boxShadow: profileProvider.imageURL ==
+                                      profileProvider.image[index]
+                                  ? [
+                                      BoxShadow(
+                                        color: AppColors.mainBlue
+                                            .withValues(alpha: 0.35),
+                                        blurRadius: 10,
+                                        spreadRadius: 2,
+                                      )
+                                    ]
+                                  : [],
+                            ),
+                            child: CircleAvatar(
+                              radius: size.width * 0.13,
+                              backgroundColor: AppColors.grey,
+                              child: ClipOval(
+                                child: Image.asset(
+                                  profileProvider.image[index],
+                                  width: size.width * 0.24,
+                                  height: size.width * 0.24,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       );

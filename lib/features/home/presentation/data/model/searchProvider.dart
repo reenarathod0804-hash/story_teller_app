@@ -12,7 +12,56 @@ class SearchProvider with ChangeNotifier {
   List<Map<String, dynamic>> filteredCategories = [];
   List<Map<String, dynamic>> filteredStories = [];
 
+  // Search history
+  List<String> searchHistory = [];
+  static const int _maxHistoryItems = 10;
+  static const String _historyKey = 'search_history';
+
   String? selectedCat;
+
+  SearchProvider() {
+    _loadHistory();
+  }
+
+  Future<void> _loadHistory() async {
+    var box = Hive.box('StoryBook');
+    final saved = box.get(_historyKey);
+    if (saved != null) {
+      searchHistory = List<String>.from(saved);
+      notifyListeners();
+    }
+  }
+
+  Future<void> _saveHistory() async {
+    var box = Hive.box('StoryBook');
+    await box.put(_historyKey, searchHistory);
+  }
+
+  void addToHistory(String query) {
+    final trimmed = query.trim();
+    if (trimmed.isEmpty) return;
+    // Remove duplicate if exists, then add to front
+    searchHistory.remove(trimmed);
+    searchHistory.insert(0, trimmed);
+    // Keep only max items
+    if (searchHistory.length > _maxHistoryItems) {
+      searchHistory = searchHistory.sublist(0, _maxHistoryItems);
+    }
+    _saveHistory();
+    notifyListeners();
+  }
+
+  void removeFromHistory(String query) {
+    searchHistory.remove(query);
+    _saveHistory();
+    notifyListeners();
+  }
+
+  void clearHistory() {
+    searchHistory.clear();
+    _saveHistory();
+    notifyListeners();
+  }
 
   Future<void> fetchCategories() async {
     var box = await Hive.openBox('searchBox');

@@ -11,6 +11,7 @@ import 'package:story_teller/features/home/presentation/screens/home_screen/stor
 import 'package:story_teller/features/home/presentation/widget/category.dart';
 import 'package:story_teller/features/home/presentation/screens/user_screen/profile.dart';
 import 'package:story_teller/widget/story_image.dart';
+import 'package:story_teller/widget/home_shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -143,24 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: size.height * 0.02,
                     ),
                     Expanded(
-                      child: homeProvider.isLoading && homeProvider.categories.isEmpty
-                          ? const Center(
-                              child: CircularProgressIndicator(
-                                color: AppColors.mainBlue,
-                              ),
-                            )
-                          : homeProvider.categories.isEmpty
-                              ? Center(
-                                  child: Text(
-                                    context.t('Loading...'),
-                                    style: const TextStyle(
-                                      fontFamily: 'Carlito Regular',
-                                      fontSize: 16,
-                                      color: AppColors.hintColor,
-                                    ),
-                                  ),
-                                )
-                              : ListView.builder(
+                      child: homeProvider.isLoading || homeProvider.categories.isEmpty
+                          ? const HomeShimmer()
+                          : ListView.builder(
                                   itemCount: homeProvider.categories.length,
                                   itemBuilder: (context, categoryIndex) {
                           var category = homeProvider.categories[categoryIndex];

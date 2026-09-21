@@ -68,6 +68,10 @@
   "● Remove your profile photo from the app.": "● Eliminar tu foto de perfil de la aplicación.",
   "● Clear your local data by uninstalling the app.": "● Borrar tus datos locales desinstalando la aplicación.",
   "6. Changes to This Policy": "6. Cambios en esta política",
-  "6th desc": "Podemos actualizar esta política en el futuro. Notificaremos a los usuarios sobre cambios importantes dentro de la aplicación."
-
+  "6th desc": "Podemos actualizar esta política en el futuro. Notificaremos a los usuarios sobre cambios importantes dentro de la aplicación.",
+  "Recent Searches": "Búsquedas recientes",
+  "Clear all": "Borrar todo",
+  "Logout": "Cerrar sesión",
+  "Are you sure you want to logout?": "¿Estás seguro de que quieres cerrar sesión?",
+  "Cancel": "Cancelar"
 }

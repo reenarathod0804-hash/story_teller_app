@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:story_teller/configue/constant/colors.dart';
+import 'package:story_teller/widget/shimmer_widget.dart';
 
 class AppStoryImage extends StatelessWidget {
   final String? imageUrl;
@@ -93,20 +94,10 @@ class AppStoryImage extends StatelessWidget {
         fit: fit,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          return Container(
-            width: width,
-            height: height,
-            color: AppColors.grey,
-            child: const Center(
-              child: SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: AppColors.mainBlue,
-                ),
-              ),
-            ),
+          return ShimmerWidget(
+            width: width ?? 100,
+            height: height ?? 100,
+            borderRadius: borderRadius ?? BorderRadius.circular(8),
           );
         },
         errorBuilder: (context, error, stackTrace) {
