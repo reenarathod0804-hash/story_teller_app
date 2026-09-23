@@ -1,0 +1,124 @@
+{
+  "project_info": {
+    "project_number": "545884750946",
+    "project_id": "storyteller-102c5",
+    "storage_bucket": "storyteller-102c5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545884750946:android:ca515b1d4d2898abaa7d3b",
+        "android_client_info": {
+          "package_name": "com.example.admin_storyteller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsy5-GcUwDkxKRA6indzgkFfAEIm0uCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545884750946:android:0ca60cae3ff6c216aa7d3b",
+        "android_client_info": {
+          "package_name": "com.example.crud2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsy5-GcUwDkxKRA6indzgkFfAEIm0uCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545884750946:android:d6a3411a68b9ff7aaa7d3b",
+        "android_client_info": {
+          "package_name": "com.example.crud_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsy5-GcUwDkxKRA6indzgkFfAEIm0uCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545884750946:android:7e37f33fd76d501baa7d3b",
+        "android_client_info": {
+          "package_name": "com.example.crud_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsy5-GcUwDkxKRA6indzgkFfAEIm0uCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545884750946:android:784aad189b179f07aa7d3b",
+        "android_client_info": {
+          "package_name": "com.example.practicefirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsy5-GcUwDkxKRA6indzgkFfAEIm0uCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545884750946:android:a234f7b2c65d466faa7d3b",
+        "android_client_info": {
+          "package_name": "com.example.story_teller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATsy5-GcUwDkxKRA6indzgkFfAEIm0uCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
