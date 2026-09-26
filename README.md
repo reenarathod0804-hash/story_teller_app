@@ -28,10 +28,10 @@
 
 ## 🌟 Executive Summary
 
-**Story Teller** is an enterprise-ready, dual-platform Flutter application engineered for kids' storytelling and educational entertainment. The solution contains two seamlessly synchronized applications within a single repository:
+**Story Teller** is a full-stack Flutter application designed for kids' storytelling and educational entertainment. The solution contains two connected applications within a single repository:
 
-1. **📱 Cross-Platform Mobile Client (`iOS` & `Android`)**: An engaging, child-friendly reading & listening experience with real-time text-to-speech (TTS), multi-language localization (English, Hindi, Spanish), age-appropriate curation, offline persistence (Hive), and cloud notifications.
-2. **💻 Web-Based Content Management System (Flutter Web Admin)**: A dashboard for storytellers and platform administrators to manage stories, curate categories, and update multilingual content in real time with Cloud Firestore.
+- **📱 Cross-Platform Mobile Client (`iOS` & `Android`)**: An engaging reading and listening experience with text-to-speech (TTS), multi-language support (English, Hindi, Spanish), age and category preferences, local persistence with Hive, and Firebase notifications.
+- **💻 Web-Based Content Management System (Flutter Web Admin)**: A dedicated dashboard for administrators to manage stories and categories and update multilingual content through Cloud Firestore.
 
 ---
 
@@ -142,11 +142,11 @@
 - **Offline Data Persistence**: Powered by **Hive DB** for caching stories and user preferences locally.
 - **Category & Age Filtering**: Smart categorization allowing discovery of fairy tales, bedtime stories, moral tales, and adventure stories.
 - **Push & Local Notifications**: Powered by **Firebase Cloud Messaging (FCM)** and `flutter_local_notifications` for story updates, reminders, and notifications.
-- **Monetization Architecture**: Built-in `in_app_purchase` framework prepared for premium stories and subscription upgrades.
+- **Payment Integration**: Integrated Stripe payment flow for premium story-related downloads through a payment bottom sheet.
 - **Responsive & Tested**: Responsive layouts tested across multi-device viewports via `device_preview`.
 
 ### 💻 Web Admin Panel (CMS)
-- **Role-Based Access Control**: Secure administrator login with Firebase Authentication and credential validation.
+- **Admin Authentication**: Dedicated administrator login using Firebase Authentication for controlled access to the content management dashboard.
 - **Real-Time Cloud Firestore Sync**: Instant propagation of newly published stories and categories to client mobile devices.
 - **Story Lifecycle Management (CRUD)**: Create, read, update, and delete stories with cover images, descriptions, categories, and content.
 - **Category Management (CRUD)**: Create, organize, and reorder categories with custom icons and metadata.
@@ -271,22 +271,23 @@ flutter run -d chrome
 
 ## 💼 Role & Engineering Highlights
 
-As the **Lead Mobile & Full-Stack Flutter Developer** on this project:
-- **Architected End-to-End System**: Designed both the client mobile application and the web CMS to operate seamlessly off a single Cloud Firestore backend.
-- **Implemented Offline-First Capability**: Structured local caching with Hive DB to ensure seamless story reading even with spotty connectivity.
-- **Engineered Real-Time Speech Narration**: Integrated `flutter_tts` with customizable speech rates and multilingual voice models.
-- **Built Production-Grade Internationalization**: Configured dynamic JSON-based multi-language switching across English, Hindi, and Spanish.
-- **Maintained Clean Code & Security**: Separated sensitive admin credentials using example template patterns and modularized state logic with Provider.
+As the **Flutter Developer** on this project:
+- **Built the Mobile Application**: Developed the Flutter mobile application with Firebase integration, Provider state management, Hive local storage, multilingual support, and interactive story features.
+- **Developed the Web Admin Panel**: Built a dedicated Flutter Web dashboard for managing stories and categories using Cloud Firestore.
+- **Implemented Local Data Persistence**: Used Hive to store user preferences and locally cached application data.
+- **Integrated Text-to-Speech**: Integrated `flutter_tts` to provide story narration with support for English, Hindi, and Spanish.
+- **Implemented Multilingual Support**: Configured language switching across English, Hindi, and Spanish for the application's content and interface.
+- **Organized Project Architecture**: Structured the application using feature-based folders, reusable widgets, Provider-based state management, and separate services for Firebase and notification functionality.
 
 ---
 
 ## 📬 Contact & Hire
 
-Looking for a **Senior Flutter Developer** to build scalable, high-performance mobile and web applications for your startup or enterprise?
+Looking for a **Flutter Developer** to build mobile or web applications using Flutter and Firebase?
 
 - **GitHub**: [@reenarathod0804-hash](https://github.com/reenarathod0804-hash)
 - **Platform**: Open for freelance, contract, and full-time opportunities on **Upwork**
-- **Specializations**: Flutter (iOS / Android / Web / Desktop), Firebase Architecture, State Management (Provider / Bloc / Riverpod), Clean Architecture, Offline-First Apps, Payment Integrations.
+- **Specializations**: Flutter (iOS / Android / Web), Firebase, Provider, Hive, REST APIs, Firebase Authentication, Cloud Firestore, Notifications, Text-to-Speech, and payment integrations.
 
 ---
 
