@@ -1,6 +1,6 @@
 import 'package:admin_storyteller/app_theme.dart';
 import 'package:admin_storyteller/firebase_options.dart';
-import 'package:admin_storyteller/home.dart';
+import 'package:admin_storyteller/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'StoryTeller Admin',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      home: const Home(),
+      home: const LoginScreen(),
     );
   }
 }
+

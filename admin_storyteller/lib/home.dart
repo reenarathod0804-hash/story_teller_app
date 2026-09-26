@@ -2,6 +2,7 @@ import 'package:admin_storyteller/app_theme.dart';
 import 'package:admin_storyteller/category.dart';
 import 'package:admin_storyteller/displayCategory.dart';
 import 'package:admin_storyteller/displayStory.dart';
+import 'package:admin_storyteller/login_screen.dart';
 import 'package:admin_storyteller/story.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -111,7 +112,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 // Footer
                 Container(
                   margin: const EdgeInsets.all(16),
-                  padding: const EdgeInsets.all(14),
+                  padding: const EdgeInsets.all(12),
                   decoration: AppTheme.cardDecoration(radius: 12),
                   child: Row(
                     children: [
@@ -123,14 +124,69 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             color: AppTheme.accent, size: 18),
                       ),
                       const SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Admin',
-                              style: AppTheme.body(13)),
-                          Text('Super User',
-                              style: AppTheme.label(11)),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('Admin',
+                                style: AppTheme.body(13),
+                                overflow: TextOverflow.ellipsis),
+                            Text('Super User',
+                                style: AppTheme.label(11)),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.logout_rounded,
+                          size: 18,
+                          color: AppTheme.textSecondary,
+                        ),
+                        tooltip: 'Sign Out',
+                        splashRadius: 18,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: Row(
+                                children: [
+                                  const Icon(Icons.logout_rounded,
+                                      color: AppTheme.danger, size: 20),
+                                  const SizedBox(width: 8),
+                                  Text('Sign Out', style: AppTheme.heading(16)),
+                                ],
+                              ),
+                              content: Text(
+                                'Are you sure you want to sign out from the Admin Panel?',
+                                style: AppTheme.body(14),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(ctx),
+                                  child: Text('Cancel',
+                                      style: AppTheme.body(14,
+                                          color: AppTheme.textSecondary)),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppTheme.danger,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(ctx);
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => const LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text('Sign Out'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

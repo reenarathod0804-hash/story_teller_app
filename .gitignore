@@ -20,3 +20,7 @@ build/
 # Environment files
 .env
 .env.*
+
+# Local admin credentials & secrets
+admin_credentials.dart
+**/admin_credentials.dart
